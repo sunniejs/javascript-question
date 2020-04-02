@@ -91,17 +91,83 @@ var func = (a, b) => {
 
 ---
 
-#### `let` 和 `const` 的区别？
+#### `var` , `let` 和 `const` 的区别是什么？
+
+<details><summary><b>答案</b></summary>
+<p>
+记住关键词：顶部变量属性、变量提升、暂时性死区、重复声明、初始值和作用域然后从这几个方向解释。
+
+| 声明方式 | 顶部变量属性 | 变量提升 | 暂时性死区 | 重复声明 | 初始值 | 作用域 |
+| -------- | ------------ | -------- | ---------- | -------- | ------ | ------ |
+| var      | 是           | 允许     | 不存在     | 允许     | 不需要 | 除块级 |
+| let      | 不是         | 不允许   | 存在       | 不允许   | 不需要 | 块级   |
+| const    | 不是         | 不允许   | 存在       | 不允许   | 需要   | 块级   |
+
+**顶部变量属性**： `var` 声明的变量会挂载在 window 上，而 `let` 和 `const` 声明的变量不会  
+**变量提升** ： `var` 变量可在声明之前使用，`let` 和 `const` 不可以  
+ **暂时性死区**： `var`不存在暂时性死区，在代码块中，用 `let` 或 `const` 声明变量之前，该变量不可用  
+ **重复声明** ： `var`允许重复声明，`let` 和 `const` 命令声明的变量不允许重复声明  
+ **初始值**： `var`和 `let`可以没有初始值，由于 `const` 声明的是只读的常量，一旦声明，就必须立即初始化，声明之后值不能改变  
+ **作用域**： `var` 没有块级作用域，`let` 和 `const`有块级作用域
+
+**修改 `const` 对象的某个属性会报错吗？**  
+因为对象是引用类型的，`const`仅保证指针不发生改变，修改对象的属性不会改变对象的指针，所以是被允许的。
+
+**小知识：输出什么？**
+
+```javascript
+console.log(a) //报错，Uncaught ReferenceError: a is not defined
+let a = 1
+```
+
+</p>
+</details>
+
+---
+
+#### 几种 `for` 循环，以及区别？
 
 <details><summary><b>答案</b></summary>
 <p>
 
--   `let` 与 `const` 都是只在声明所在的块级作用域内有效。
--   `let` 声明的变量可以改变，值和类型都可以改变，没有限制。
--   `const` 声明的变量不得改变值，这意味着，`const` 一旦声明变量，就必须立即初始化，不能留到以后赋值。
+- `forEach` `for`循环的简化,缺点是不能中断循环，没有`break/continue`方法。
+ 
+```javascript
+const arr = [1, 2, 3, 4, 5]
+for (let i = 0; i < arr.length; i++) {}
+// ES5 forEach 
+arr.forEach(function(item) {})
+// ES5 every
+arr.every(function(item) {
+    return true
+})
+// ES5 for in 循环的是 key
+const object = { name: 'sunnie', age: 18 }
+for (let key in object) {
+    console.log(key)
+}
+```
 
-修改 `const` 对象的某个属性会报错吗？  
-因为对象是引用类型的，`const`仅保证指针不发生改变，修改对象的属性不会改变对象的指针，所以是被允许的。
+```javascript
+// ES6 for of 循环的是 value
+for (let item of object) {
+    console.log(key)
+}
+```
+**for...in迭代和for...of有什么区别**
+
+for...in循环出的是key，for...of循环出的是value
+
+</p>
+</details>
+
+---
+
+#### ES5中将伪数组转换成数组 ？
+
+<details><summary><b>答案</b></summary>
+<p>
+
 
 </p>
 </details>
@@ -345,6 +411,7 @@ function throttle(fn, threshhold = 3000) {
     }
 }
 ```
+
 **应用场景**
 mouse move 时减少计算次数：`debounce`  
 input 中输入文字自动发送 ajax 请求进行自动补全： `debounce`  
@@ -352,6 +419,26 @@ ajax 请求合并，不希望短时间内大量的请求被重复发送：`debou
 resize window 重新计算样式或布局：`debounce` 或 `throttle`  
 scroll 时触发操作，如随动效果：throttle  
 对用户输入的验证，不想停止输入再进行验证，而是每 n 秒进行验证：`throttle`
+
+</p>
+</details>
+
+---
+
+#### ES6 Async/Await 与 Promise 区别？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+</p>
+</details>
+
+---
+
+#### ？
+
+<details><summary><b>答案</b></summary>
+<p>
 
 </p>
 </details>
