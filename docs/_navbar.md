@@ -1,3 +1,3 @@
 - [JS](/)
-- [CSS](/javascript/README.md)
-- [HTTP](/guide/examples.md)
+- [CSS](/css/README.md)
+- [HTTP](/http/README.md)
