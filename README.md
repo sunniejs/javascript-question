@@ -105,19 +105,23 @@ var func = (a, b) => {
 
 **顶部变量属性**： `var` 声明的变量会挂载在 window 上，而 `let` 和 `const` 声明的变量不会  
 **变量提升** ： `var` 变量可在声明之前使用，`let` 和 `const` 不可以  
- **暂时性死区**： `var`不存在暂时性死区，在代码块中，用 `let` 或 `const` 声明变量之前，该变量不可用  
+ **暂时性死区**：`var`不存在暂时性死区，在代码块中，用 `let` 或 `const` 声明变量之前，使用会抛出异常 (暂时性死区) 
  **重复声明** ： `var`允许重复声明，`let` 和 `const` 命令声明的变量不允许重复声明  
  **初始值**： `var`和 `let`可以没有初始值，由于 `const` 声明的是只读的常量，一旦声明，就必须立即初始化，声明之后值不能改变  
  **作用域**： `var` 没有块级作用域，`let` 和 `const`有块级作用域
 
-**修改 `const` 对象的某个属性会报错吗？**  
+**拓展：修改 `const` 对象的某个属性会报错吗？**  
 因为对象是引用类型的，`const`仅保证指针不发生改变，修改对象的属性不会改变对象的指针，所以是被允许的。
 
-**小知识：输出什么？**
+**拓展：输出什么？**
 
 ```javascript
-console.log(a) //报错，Uncaught ReferenceError: a is not defined
-let a = 1
+console.log(a) // undefined
+var a = 2
+
+console.log(b) //报错，Uncaught ReferenceError: b is not defined
+let b = 1
+
 ```
 
 </p>
@@ -130,12 +134,13 @@ let a = 1
 <details><summary><b>答案</b></summary>
 <p>
 
-- `forEach` `for`循环的简化,缺点是不能中断循环，没有`break/continue`方法。
- 
+-   `forEach` `for`循环的简化,不能中断，没有 `break/continue` 方法，没有返回值。
+-    `map` 只能遍历数组，不能中断，返回值是修改后的数组。
+
 ```javascript
 const arr = [1, 2, 3, 4, 5]
 for (let i = 0; i < arr.length; i++) {}
-// ES5 forEach 
+// ES5 forEach
 arr.forEach(function(item) {})
 // ES5 every
 arr.every(function(item) {
@@ -154,20 +159,56 @@ for (let item of object) {
     console.log(key)
 }
 ```
-**for...in迭代和for...of有什么区别**
 
-for...in循环出的是key，for...of循环出的是value
+**拓展：for...in 迭代和 for...of 有什么区别**
+
+for...in 循环出的是 key，for...of 循环出的是 value
+
+</p>
+</details>
+
+---
+#### ES5,ES6 如何查找一个元素？
+
+<details><summary><b>答案</b></summary>
+<p>
+  
+
 
 </p>
 </details>
 
 ---
 
-#### ES5中将伪数组转换成数组 ？
+#### 什么是类数组(伪数组)，如何转换成数组 ？
 
 <details><summary><b>答案</b></summary>
 <p>
 
+`类数组(Array-Like Objects)` 是一个类似数组的对象，比如 `arguments` 对象，还有 `DOM API` 返回的 `NodeList` 对象都属于类数组对象。
+
+类数组对象有下面两个特性：
+
+-   具有：指向对象元素的数字索引下标和 `length` 属性
+-   不具有：比如 `push` 、`shift`、 `forEach` 以及 `indexOf` 等数组对象具有的方法
+
+**类数组对象转数组方法：**
+
+```javascript
+function fn() {
+    // ES5 方法1:
+    var arr = Array.prototype.slice.call(arguments)
+
+    // ES6 方法1:
+    let arr = Array.from(arguments)
+    // ES6 方法2:
+    let arr = [...arguments]
+
+    // 以上三种请任选一种执行测试，为方便写在一起了
+    arr.push(4) // arr -> [1, 2, 3, 4]
+}
+fn(1, 2, 3)
+```
 
 </p>
 </details>
@@ -440,10 +481,11 @@ scroll 时触发操作，如随动效果：throttle
 <details><summary><b>答案</b></summary>
 <p>
  
- &nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”  
+ &nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”
 
 ![logo](https://imgs.solui.cn/wx/640.gif ':size=262x224')  
 关注公众号：回复“加群”即可加 前端仙女群
+
 </p>
 </details>
 
