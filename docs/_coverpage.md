@@ -8,4 +8,4 @@
 [马上开始 <i class="iconfont icon-down"></i>](#main)
 
 <!-- background image -->
-![](https://imgs.solui.cn/wx/bg.png)
+![](https://imgs.solui.cn/wx/bg.jpg)
