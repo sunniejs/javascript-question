@@ -105,8 +105,8 @@ var func = (a, b) => {
 
 **顶部变量属性**： `var` 声明的变量会挂载在 window 上，而 `let` 和 `const` 声明的变量不会  
 **变量提升** ： `var` 变量可在声明之前使用，`let` 和 `const` 不可以  
- **暂时性死区**：`var`不存在暂时性死区，在代码块中，用 `let` 或 `const` 声明变量之前，使用会抛出异常 (暂时性死区) 
- **重复声明** ： `var`允许重复声明，`let` 和 `const` 命令声明的变量不允许重复声明  
+ **暂时性死区**：`var`不存在暂时性死区，在代码块中，用 `let` 或 `const` 声明变量之前，使用会抛出异常 (暂时性死区)
+**重复声明** ： `var`允许重复声明，`let` 和 `const` 命令声明的变量不允许重复声明  
  **初始值**： `var`和 `let`可以没有初始值，由于 `const` 声明的是只读的常量，一旦声明，就必须立即初始化，声明之后值不能改变  
  **作用域**： `var` 没有块级作用域，`let` 和 `const`有块级作用域
 
@@ -121,7 +121,6 @@ var a = 2
 
 console.log(b) //报错，Uncaught ReferenceError: b is not defined
 let b = 1
-
 ```
 
 </p>
@@ -135,7 +134,7 @@ let b = 1
 <p>
 
 -   `forEach` `for`循环的简化,不能中断，没有 `break/continue` 方法，没有返回值。
--    `map` 只能遍历数组，不能中断，返回值是修改后的数组。
+-   `map` 只能遍历数组，不能中断，返回值是修改后的数组。
 
 ```javascript
 const arr = [1, 2, 3, 4, 5]
@@ -168,12 +167,11 @@ for...in 循环出的是 key，for...of 循环出的是 value
 </details>
 
 ---
+
 #### ES5,ES6 如何查找一个元素？
 
 <details><summary><b>答案</b></summary>
 <p>
-  
-
 
 </p>
 </details>
@@ -233,6 +231,99 @@ fn(1, 2, 3)
 
 ---
 
+#### JS 怎么实现一个类,怎么实例化这个类？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+Javascript 传统方法是通过构造函数定义并生成新对象。
+
+```javascript
+function Animal(type) {
+    this.type = type
+}
+Animal.prototype.eat = function() {
+    console.log('eat')
+}
+var dog = new Animal('dog')
+```
+
+ES6 引入了 `CLASS` 概念，`constructor`方法就是构造函数，定义 `类` 的方法时，前面不需要加 `function` 保留字，方法之前不需要逗号。
+
+```javascript
+class Animal {
+    constructor(type) {
+        this.type = type
+    }
+    eat() {
+        console.log('eat')
+    }
+}
+var cat = new Animal('cat')
+```
+
+</p>
+</details>
+
+---
+
+#### JS 怎么继承类？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+// 只实现了部分继承 ，prototype上的没有被继承
+function Animal(type) {
+    this.type = type
+}
+function Dog() {
+    Animal.call(this)
+}
+
+// ES6 实现继承
+class Animal {
+    construtor(type) {
+        this.type = type
+    }
+    eat() {
+        console.log('eat')
+    }
+}
+class Dog extends Animal {
+    construtor(type) {
+        supper(type)
+    }
+}
+```
+
+</p>
+</details>
+
+---
+
+#### ES6 `Set()` `Map()` 添加值得方法？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+添加值方法： `Set` 使用`add`添加，`Map` 使用`set`添加
+
+```javascript
+// Set
+let mySet = new Set()
+mySet.add(1)
+// Map
+const myMap = new Map()
+const o = { p: 'hello' }
+myMap.set(o, 'world')
+```
+
+</p>
+</details>
+
+---
+
 #### es6 class static 解释？如何继承 static？
 
 <details><summary><b>答案</b></summary>
@@ -258,6 +349,74 @@ foo.classMethod() // TypeError: foo.classMethod is not a function
 class Bar extends Foo {}
 Bar.classMethod() // 'hello'
 ```
+
+</p>
+</details>
+
+---
+
+#### 什么闭包,闭包有什么用？
+
+<details><summary><b>答案:star:</b></summary>
+<p>
+
+</p>
+</details>
+
+---
+
+#### JS 如何获取函数所有参数？
+
+知识点：`rest参数` `类数组`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+// ES5
+function sum() {
+    console.log(arguments)
+}
+// ES6
+function sum(...rest) {
+    // rest 是数组
+    console.log(rest)
+}
+sum(1, 2, 3)
+```
+
+</p>
+</details>
+
+---
+
+#### 用箭头函数实现一个数组排序？
+
+知识点：`sort` `箭头函数`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+const arr = [10, 5, 40, 25, 1000, 1]
+
+arr.sort((a, b) => {
+    return a - b
+}) 
+console.log(arr) // [1, 5, 10, 25, 40, 1000]
+```
+
+</p>
+</details>
+
+---
+
+#### 如何用箭头函数时间一个数组排序？
+
+知识点：`Object`
+
+<details><summary><b>答案</b></summary>
+<p>
 
 </p>
 </details>
@@ -325,6 +484,16 @@ let obj2 = Object.assign({}, obj)
 obj2.username = 'change' // `深拷贝`修改新对象不会改到原对象
 console.log(obj) // {username: "sunnie"}
 ```
+
+</p>
+</details>
+
+---
+
+#### this？
+
+<details><summary><b>答案</b></summary>
+<p>
 
 </p>
 </details>
@@ -431,7 +600,7 @@ function debounce(func, delay) {
 
 **`函数节流`(throttle):节流顾名思义则是将减少一段时间内触发的频率。**
 
-比如：我点击一个按钮，`delay`设置 3s ,我手速超快，从来不让点击间隔时间大于 3s 函数就不执行，一旦大于了 3s 就执行了
+比如：我点击一个按钮，`threshhold`设置 3s, 当我点第一次点击执行函数，接下来的 3s 内点都少次都没用，直到距离第一次 3s 执行第二次
 
 ```javascript
 function throttle(fn, threshhold = 3000) {

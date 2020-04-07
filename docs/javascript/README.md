@@ -38,7 +38,7 @@ ES6 出来的 `Symbol` 也是原始数据类型 ，表示独一无二的值
 
 ```javascript
 var func = function add(a, b) {
-  return a + b
+    return a + b
 }
 ```
 
@@ -46,7 +46,7 @@ function 操作符
 
 ```javascript
 var func = function(a, b) {
-  return a + b
+    return a + b
 }
 ```
 
@@ -60,7 +60,7 @@ ES6:arrow function
 
 ```javascript
 var func = (a, b) => {
-  return a + b
+    return a + b
 }
 ```
 
@@ -133,8 +133,8 @@ let b = 1
 <details><summary><b>答案</b></summary>
 <p>
 
-- `forEach` `for`循环的简化,不能中断，没有 `break/continue` 方法，没有返回值。
-- `map` 只能遍历数组，不能中断，返回值是修改后的数组。
+-   `forEach` `for`循环的简化,不能中断，没有 `break/continue` 方法，没有返回值。
+-   `map` 只能遍历数组，不能中断，返回值是修改后的数组。
 
 ```javascript
 const arr = [1, 2, 3, 4, 5]
@@ -143,19 +143,19 @@ for (let i = 0; i < arr.length; i++) {}
 arr.forEach(function(item) {})
 // ES5 every
 arr.every(function(item) {
-  return true
+    return true
 })
 // ES5 for in 循环的是 key
 const object = { name: 'sunnie', age: 18 }
 for (let key in object) {
-  console.log(key)
+    console.log(key)
 }
 ```
 
 ```javascript
 // ES6 for of 循环的是 value
 for (let item of object) {
-  console.log(key)
+    console.log(key)
 }
 ```
 
@@ -187,23 +187,23 @@ for...in 循环出的是 key，for...of 循环出的是 value
 
 类数组对象有下面两个特性：
 
-- 具有：指向对象元素的数字索引下标和 `length` 属性
-- 不具有：比如 `push` 、`shift`、 `forEach` 以及 `indexOf` 等数组对象具有的方法
+-   具有：指向对象元素的数字索引下标和 `length` 属性
+-   不具有：比如 `push` 、`shift`、 `forEach` 以及 `indexOf` 等数组对象具有的方法
 
 **类数组对象转数组方法：**
 
 ```javascript
 function fn() {
-  // ES5 方法1:
-  var arr = Array.prototype.slice.call(arguments)
+    // ES5 方法1:
+    var arr = Array.prototype.slice.call(arguments)
 
-  // ES6 方法1:
-  let arr = Array.from(arguments)
-  // ES6 方法2:
-  let arr = [...arguments]
+    // ES6 方法1:
+    let arr = Array.from(arguments)
+    // ES6 方法2:
+    let arr = [...arguments]
 
-  // 以上三种请任选一种执行测试，为方便写在一起了
-  arr.push(4) // arr -> [1, 2, 3, 4]
+    // 以上三种请任选一种执行测试，为方便写在一起了
+    arr.push(4) // arr -> [1, 2, 3, 4]
 }
 fn(1, 2, 3)
 ```
@@ -218,13 +218,13 @@ fn(1, 2, 3)
 <details><summary><b>答案:star:</b></summary>
 <p>
 
-- 箭头函数作为匿名函数，不能作为构造函数，不能使用 `new` 运算符
-- 箭头函数不绑定 `auguments`，用 `rest` 参数...解决
-- 箭头函数会捕获其上下文的 `this` 值，作为自己的 `this` 值
-- 箭头函数当方法使用的时候，没有定义 this 绑定
-- 使用`call()`和 `apply()`调用，传入参数时，参数一的改变对 `this` 没有影响
-- 箭头函数没有原型属性
-- 箭头函数不能当做 `Generator` 函数，不能使用 `yiel` 关键字。
+-   箭头函数作为匿名函数，不能作为构造函数，不能使用 `new` 运算符
+-   箭头函数不绑定 `auguments`，用 `rest` 参数...解决
+-   箭头函数会捕获其上下文的 `this` 值，作为自己的 `this` 值
+-   箭头函数当方法使用的时候，没有定义 this 绑定
+-   使用`call()`和 `apply()`调用，传入参数时，参数一的改变对 `this` 没有影响
+-   箭头函数没有原型属性
+-   箭头函数不能当做 `Generator` 函数，不能使用 `yiel` 关键字。
 
 </p>
 </details>
@@ -240,10 +240,10 @@ Javascript 传统方法是通过构造函数定义并生成新对象。
 
 ```javascript
 function Animal(type) {
-  this.type = type
+    this.type = type
 }
 Animal.prototype.eat = function() {
-  console.log('eat')
+    console.log('eat')
 }
 var dog = new Animal('dog')
 ```
@@ -252,12 +252,12 @@ ES6 引入了 `CLASS` 概念，`constructor`方法就是构造函数，定义 `�
 
 ```javascript
 class Animal {
-  constructor(type) {
-    this.type = type
-  }
-  eat() {
-    console.log('eat')
-  }
+    constructor(type) {
+        this.type = type
+    }
+    eat() {
+        console.log('eat')
+    }
 }
 var cat = new Animal('cat')
 ```
@@ -275,26 +275,48 @@ var cat = new Animal('cat')
 ```javascript
 // 只实现了部分继承 ，prototype上的没有被继承
 function Animal(type) {
-  this.type = type
+    this.type = type
 }
 function Dog() {
-  Animal.call(this)
+    Animal.call(this)
 }
 
 // ES6 实现继承
 class Animal {
-  construtor(type) {
-    this.type = type
-  }
-  eat() {
-    console.log('eat')
-  }
+    construtor(type) {
+        this.type = type
+    }
+    eat() {
+        console.log('eat')
+    }
 }
 class Dog extends Animal {
-  construtor(type) {
-    supper(type)
-  }
+    construtor(type) {
+        supper(type)
+    }
 }
+```
+
+</p>
+</details>
+
+---
+
+#### ES6 `Set()` `Map()` 添加值得方法？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+添加值方法： `Set` 使用`add`添加，`Map` 使用`set`添加
+
+```javascript
+// Set
+let mySet = new Set()
+mySet.add(1)
+// Map
+const myMap = new Map()
+const o = { p: 'hello' }
+myMap.set(o, 'world')
 ```
 
 </p>
@@ -309,14 +331,14 @@ class Dog extends Animal {
 
 类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上`static`关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
 
-- 静态方法调用直接在类上进行，而在类的实例上不可被调用。
-- 父类的静态方法，可以被子类继承。
+-   静态方法调用直接在类上进行，而在类的实例上不可被调用。
+-   父类的静态方法，可以被子类继承。
 
 ```javascript
 class Foo {
-  static classMethod() {
-    return 'hello'
-  }
+    static classMethod() {
+        return 'hello'
+    }
 }
 // 静态方法调用直接在类上进行，而在类的实例上不可被调用。
 Foo.classMethod() // 'hello'
@@ -346,20 +368,42 @@ Bar.classMethod() // 'hello'
 #### JS 如何获取函数所有参数？
 
 知识点：`rest参数` `类数组`
+
 <details><summary><b>答案</b></summary>
 <p>
 
 ```javascript
 // ES5
 function sum() {
-  console.log(arguments)
+    console.log(arguments)
 }
 // ES6
 function sum(...rest) {
-  // rest 是数组
-  console.log(rest)
-}  
+    // rest 是数组
+    console.log(rest)
+}
 sum(1, 2, 3)
+```
+
+</p>
+</details>
+
+---
+
+#### 用箭头函数实现一个数组排序？
+
+知识点：`sort` `箭头函数`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+const arr = [10, 5, 40, 25, 1000, 1]
+
+arr.sort((a, b) => {
+    return a - b
+}) 
+console.log(arr) // [1, 5, 10, 25, 40, 1000]
 ```
 
 </p>
@@ -369,23 +413,10 @@ sum(1, 2, 3)
 
 #### 如何用箭头函数时间一个数组排序？
 
-知识点：`ES6` `数组排序`
-<details><summary><b>答案</b></summary>
-<p>
- 
-
-</p>
-</details>
-
----
-
-#### 如何用箭头函数时间一个数组排序？
-
-知识点：`Object` 
+知识点：`Object`
 
 <details><summary><b>答案</b></summary>
 <p>
- 
 
 </p>
 </details>
@@ -404,11 +435,11 @@ sum(1, 2, 3)
 
 ```javascript
 function clone(target) {
-  let cloneTarget = {}
-  for (const key in target) {
-    cloneTarget[key] = target[key]
-  }
-  return cloneTarget
+    let cloneTarget = {}
+    for (const key in target) {
+        cloneTarget[key] = target[key]
+    }
+    return cloneTarget
 }
 ```
 
@@ -424,15 +455,15 @@ JSON.parse(JSON.stringify())
 
 ```javascript
 function clone(target) {
-  if (typeof target === 'object') {
-    let cloneTarget = {}
-    for (const key in target) {
-      cloneTarget[key] = clone(target[key])
+    if (typeof target === 'object') {
+        let cloneTarget = {}
+        for (const key in target) {
+            cloneTarget[key] = clone(target[key])
+        }
+        return cloneTarget
+    } else {
+        return target
     }
-    return cloneTarget
-  } else {
-    return target
-  }
 }
 ```
 
@@ -447,7 +478,7 @@ function clone(target) {
 
 ```javascript
 let obj = {
-  username: 'sunnie',
+    username: 'sunnie',
 }
 let obj2 = Object.assign({}, obj)
 obj2.username = 'change' // `深拷贝`修改新对象不会改到原对象
@@ -458,16 +489,17 @@ console.log(obj) // {username: "sunnie"}
 </details>
 
 ---
+
 #### this？
 
 <details><summary><b>答案</b></summary>
 <p>
 
-
 </p>
 </details>
 
 ---
+
 #### `call`、`apply`、`bind`的区别,以及实现？
 
 <details><summary><b>答案:star:</b></summary>
@@ -481,12 +513,12 @@ console.log(obj) // {username: "sunnie"}
 
 ```javascript
 var person = {
-  value: 1,
+    value: 1,
 }
 function say(name, age) {
-  console.log(name)
-  console.log(age)
-  console.log(this)
+    console.log(name)
+    console.log(age)
+    console.log(this)
 }
 // call 用法
 say.call(person, 'sunnie', 18)
@@ -510,10 +542,10 @@ say.apply(person, ['sunnie', 18])
 ```javascript
 // 第一版
 Function.prototype.call2 = function(context) {
-  // 首先要获取调用 call 的函数，用this可以获取
-  context.fn = this
-  context.fn()
-  delete context.fn
+    // 首先要获取调用 call 的函数，用this可以获取
+    context.fn = this
+    context.fn()
+    delete context.fn
 }
 ```
 
@@ -530,10 +562,10 @@ Function.prototype.call2 = function(context) {
 ```javascript
 // 第一版
 Function.prototype.bind2 = function(context) {
-  var self = this
-  return function() {
-    self.apply(context)
-  }
+    var self = this
+    return function() {
+        self.apply(context)
+    }
 }
 ```
 
@@ -556,37 +588,37 @@ Function.prototype.bind2 = function(context) {
 
 ```javascript
 function debounce(func, delay) {
-  let timeout
-  return function() {
-    clearTimeout(timeout) // 如果持续触发，那么就清除定时器，定时器的回调就不会执行。
-    timeout = setTimeout(() => {
-      func.apply(this, arguments)
-    }, delay)
-  }
+    let timeout
+    return function() {
+        clearTimeout(timeout) // 如果持续触发，那么就清除定时器，定时器的回调就不会执行。
+        timeout = setTimeout(() => {
+            func.apply(this, arguments)
+        }, delay)
+    }
 }
 ```
 
 **`函数节流`(throttle):节流顾名思义则是将减少一段时间内触发的频率。**
 
-比如：我点击一个按钮，`delay`设置 3s ,我手速超快，从来不让点击间隔时间大于 3s 函数就不执行，一旦大于了 3s 就执行了
+比如：我点击一个按钮，`threshhold`设置 3s, 当我点第一次点击执行函数，接下来的 3s 内点都少次都没用，直到距离第一次 3s 执行第二次
 
 ```javascript
 function throttle(fn, threshhold = 3000) {
-  let last
-  let timer
-  return function() {
-    const now = +new Date()
-    if (last && now < last + threshhold) {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        last = now
-        fn.apply(this, arguments)
-      }, threshhold)
-    } else {
-      last = now
-      fn.apply(this, arguments)
+    let last
+    let timer
+    return function() {
+        const now = +new Date()
+        if (last && now < last + threshhold) {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                last = now
+                fn.apply(this, arguments)
+            }, threshhold)
+        } else {
+            last = now
+            fn.apply(this, arguments)
+        }
     }
-  }
 }
 ```
 
