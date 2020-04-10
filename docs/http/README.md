@@ -1,5 +1,5 @@
 
-# CSS 题目  敬请期待
+# HTTP 题目   
 
 题目和答案通过网络整理，如有错误欢迎 pr 修正。
 
@@ -11,6 +11,15 @@
 
  :purple_heart: [JAVASCRIPT](/)  
  :heart: [CSS](/css/README.md)
+
+---
+
+#### Http 2.0 和 Http 1.1 的区别？
+
+<details><summary><b>答案</b></summary>
+<p>
+ </p>
+</details>
 
 ---
 

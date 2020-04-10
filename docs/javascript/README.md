@@ -239,27 +239,27 @@ fn(1, 2, 3)
 Javascript 传统方法是通过构造函数定义并生成新对象。
 
 ```javascript
-function Animal(type) {
-    this.type = type
+function Parent(name) {
+    this.name = name
 }
-Animal.prototype.eat = function() {
+Parent.prototype.eat = function() {
     console.log('eat')
 }
-var dog = new Animal('dog')
+var child = new Child('parent')
 ```
 
 ES6 引入了 `CLASS` 概念，`constructor`方法就是构造函数，定义 `类` 的方法时，前面不需要加 `function` 保留字，方法之前不需要逗号。
 
 ```javascript
-class Animal {
-    constructor(type) {
-        this.type = type
+class Parent {
+    constructor(name) {
+        this.name = name
     }
     eat() {
         console.log('eat')
     }
 }
-var cat = new Animal('cat')
+let child = new Child('parent')
 ```
 
 </p>
@@ -273,6 +273,71 @@ var cat = new Animal('cat')
 <p>
 
 ```javascript
+// ES5 call 继承
+function Parent() {
+    this.name = 'parent'
+}
+function Child() {
+    Parent.call(this)
+    this.type = 'child'
+}
+```
+
+缺点：只实现了部分继承 ，父类原型对象 `prototype` 上的方法无法继承。
+
+```javascript
+// ES5 借助原型链
+function Parent() {
+    this.name = 'parent'
+    this.play = [1, 2, 3]
+}
+function Child() {
+    Parent.call(this)
+}
+Child.prototype = new Parent()
+```
+
+通过上面的方法继承，尝试修改实例属性
+
+```javascript
+var s1 = new Child()
+var s2 = new Child()
+s1.play.push(4)
+console.log(s1.play, s2.play) // [1,2,3,4],[1,2,3,4]
+```
+
+缺点：实例化两个对象，修改其中一个对象的继承属性，另外也会改变。因为两个实例的原型对象一样。
+
+```javascript
+// ES5 借助Call和原型链
+function Parent() {
+    this.name = 'parent'
+    this.play = [1, 2, 3]
+}
+function Child() {
+    Parent.call(this)
+    this.type = 'child'
+}
+Child.prototype = new Parent()
+```
+
+缺点：多执行了一次构造函数会 `Child3.prototype = new Parent()`
+
+```javascript
+function Parent() {
+    this.name = 'parent'
+    this.play = [1, 2, 3]
+}
+function Child() {
+    Parent.call(this)
+    this.type = 'child'
+}
+Child.prototype = Parent.prototype
+```
+
+缺点：多执行了一次构造函数会 `Child3.prototype = new Parent()`
+
+```javascript
 // 只实现了部分继承 ，prototype上的没有被继承
 function Animal(type) {
     this.type = type
@@ -280,7 +345,9 @@ function Animal(type) {
 function Dog() {
     Animal.call(this)
 }
+```
 
+```javascript
 // ES6 实现继承
 class Animal {
     construtor(type) {
@@ -402,7 +469,7 @@ const arr = [10, 5, 40, 25, 1000, 1]
 
 arr.sort((a, b) => {
     return a - b
-}) 
+})
 console.log(arr) // [1, 5, 10, 25, 40, 1000]
 ```
 
@@ -639,6 +706,26 @@ scroll 时触发操作，如随动效果：throttle
 
 <details><summary><b>答案</b></summary>
 <p>
+
+</p>
+</details>
+
+---
+
+#### `script` 引入标签 `defer` 和 `async` 区别和相同点？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+![](https://imgs.solui.cn/questions/defer.png)
+
+通过图片观察  
+相同：
+
+-   加 `defer` 和 `async`后，`script`读取和 `html`解析同时进行，不会阻塞 `html` 解析。  
+    不同：
+-   `defer`会在 `html`解析完之后执行 ， `async` 则是异步加载完 `script` 后立即执行 。
+-   图中未表现出 `defer` 是按照加载顺序执行脚本的。 `async` 则是一个乱序执行，反正对它来说脚本的加载和执行是紧紧挨着的，所以不管你声明的顺序如何，只要它加载完了就会立刻执行。
 
 </p>
 </details>
