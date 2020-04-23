@@ -91,6 +91,30 @@ var func = (a, b) => {
 
 ---
 
+#### 开发中用到了哪些 ES6 的新特性？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+1. `let` (声明变量) `const` (声明常量,常量不能修改的量)
+2. `class` (创建类)
+3. `import/export` (基于 ES6 的模块规范创建导入/导出模块(文件/组件))
+4. `new Set` (数组去重)
+5. `Symbol`(唯一的值) `var a = Symbol('sunnie')`
+6. `...ary` (展开运算符、剩余运算符)
+7. `${}` 模板字符串
+8. 解构赋值 `let {a} = obj; let [b] = ary`
+9. `for of` 循环
+10. `()=>{}` 箭头函数
+11. 数组新增方法：`flat、find、findIndex`
+12. 对象新增方法： `Object.assign() Object.values() Object.keys() Object.create()`
+
+
+</p>
+</details>
+
+---
+
 #### `var` , `let` 和 `const` 的区别是什么？
 
 <details><summary><b>答案</b></summary>
