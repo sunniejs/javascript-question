@@ -29,6 +29,47 @@ ES6 出来的 `Symbol` 也是原始数据类型 ，表示独一无二的值
 
 ---
 
+#### js 数据类型检测?
+
+<details><summary><b>答案</b></summary>
+<p>
+
+-   `typeof`
+
+```javascript
+typeof 5 // 'number'
+typeof '5' // 'string'
+typeof undefined // 'undefined'
+typeof false // 'boolean'
+typeof Symbol() // 'symbol'
+console.log(typeof null) //object
+console.log(typeof NaN) //number
+typeof [] // 'object'
+typeof {} // 'object'
+typeof console.log // 'function'
+```
+
+-   `instanceof`通过原型链来判断数据类型的
+
+```javascript
+p1 = new Person()
+p1 instanceof Person // true
+```
+
+-   `Object.prototype.toString.call()`
+
+```javascript
+var obj = {}
+var arr = []
+console.log(Object.prototype.toString.call(obj)) //[object Object]
+console.log(Object.prototype.toString.call(arr)) //[object Array]
+```
+
+</p>
+</details>
+
+---
+
 #### js 有哪几种方法定义函数？
 
 <details><summary><b>答案</b></summary>
@@ -108,7 +149,6 @@ var func = (a, b) => {
 10. `()=>{}` 箭头函数
 11. 数组新增方法：`flat、find、findIndex`
 12. 对象新增方法： `Object.assign() Object.values() Object.keys() Object.create()`
-
 
 </p>
 </details>
@@ -756,14 +796,66 @@ scroll 时触发操作，如随动效果：throttle
 
 ---
 
+#### 前端模块化：`CommonJS`,`AMD`,`CMD`,`ES6`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+</p>
+</details>
+
+---
+
+#### JavaScript Event Loop
+
+<details><summary><b>答案</b></summary>
+<p>
+
+</p>
+</details>
+
+---
+
+#### js 保留整数、向上取整、向下取整、四舍五入
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+// parseInt 只保留整数部分
+parseInt(5.1234) // 5
+
+// 向下取整
+Math.floor(5.1234) // 5
+
+// 向上取整
+Math.ceil(5.1234) // 6
+
+// 四舍五入
+Math.round(5.1234) // 5
+Math.round(5.6789) // 6
+
+// 按照位数四舍五入
+var num = new Number(5.6789)
+num.toFixed(2) // 5.68
+
+// 取绝对值
+Math.abs(-1) // 1
+```
+
+</p>
+</details>
+
+---
+
 #### 如何找到失散已久的组织？
 
 <details><summary><b>答案</b></summary>
 <p>
- 
- &nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”
 
-![logo](https://imgs.solui.cn/wx/640.gif ':size=262x224')  
+&nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”
+
+![logo](https://imgs.solui.cn/wx/640.gif ':size=262x224')
 关注公众号：回复“加群”即可加 前端仙女群
 
 </p>
