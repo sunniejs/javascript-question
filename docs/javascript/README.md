@@ -295,7 +295,7 @@ fn(1, 2, 3)
 
 ---
 
-#### JS 怎么实现一个类,怎么实例化这个类？
+#### JS ES5,ES6 怎么实现一个类,怎么实例化这个类？
 
 <details><summary><b>答案</b></summary>
 <p>
@@ -331,7 +331,7 @@ let child = new Child('parent')
 
 ---
 
-#### JS 怎么继承类？
+#### JS ES5,ES6 怎么继承类？
 
 <details><summary><b>答案</b></summary>
 <p>
@@ -398,35 +398,29 @@ function Child() {
 }
 Child.prototype = Parent.prototype
 ```
-
-缺点：多执行了一次构造函数会 `Child3.prototype = new Parent()`
-
-```javascript
-// 只实现了部分继承 ，prototype上的没有被继承
-function Animal(type) {
-    this.type = type
-}
-function Dog() {
-    Animal.call(this)
-}
-```
+通过上面的方法继承，尝试修改实例属性
 
 ```javascript
-// ES6 实现继承
-class Animal {
-    construtor(type) {
-        this.type = type
-    }
-    eat() {
-        console.log('eat')
-    }
-}
-class Dog extends Animal {
-    construtor(type) {
-        supper(type)
-    }
-}
+var s1 = new Child()
+var s2 = new Child()
+console.log(s1.constructor)  
 ```
+缺点：子类实例的构造函数是Parent，显然这是不对的，应该是Child
+
+```javascript
+
+function Parent(){
+    this.name='parent'
+    this.play=[1,2,3]
+}
+function Child(){
+    Parent.call(this)
+    this.type='child'
+}
+Child.prototype=Object.create(Parent.prototype)
+```
+
+ 
 
 </p>
 </details>
@@ -553,6 +547,32 @@ console.log(arr) // [1, 5, 10, 25, 40, 1000]
 </details>
 
 ---
+#### js 请用`ES5` `ES6` 合并数组？
+
+知识点：`合并数组`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+
+let a = [1, 2, 3]
+let b = [4, 5, 6]
+
+// ES5 方法一
+a.concat(b)
+// ES5 方法二
+Array.prototype.push.apply(a, b)
+console.log(a) // [1,2,3,4,5,6]
+// ES6
+let c = [...a, ...b]
+console.log(c) 
+
+```
+</p>
+</details>
+
+---
 
 #### 深拷贝和浅拷贝的区别，以及实现？
 
@@ -644,7 +664,7 @@ console.log(obj) // {username: "sunnie"}
 
 ```javascript
 var person = {
-    value: 1,
+    value: 1
 }
 function say(name, age) {
     console.log(name)
@@ -678,6 +698,17 @@ Function.prototype.call2 = function(context) {
     context.fn()
     delete context.fn
 }
+
+// 测试一下
+var foo = {
+    value: 1
+};
+
+function bar() {
+    console.log(this.value);
+}
+
+bar.call2(foo); // 1
 ```
 
 **apply 实现**
@@ -715,7 +746,7 @@ Function.prototype.bind2 = function(context) {
  
 **`函数防抖`(debounce):防抖就是将一段时间内连续的多次触发转化为一次触发。**
 
-比如：我点击一个按钮，`delay`设置 3s ,我手速超快，从来不让点击间隔时间大于 3s 函数就不执行，一旦大于了 3s 就执行了
+比如：我点击一个按钮，`delay`设置 3s ,我手速超快，从来不让点击间隔时间大于等于 3s 函数就不执行，一旦大于等于了 3s 就执行了
 
 ```javascript
 function debounce(func, delay) {
@@ -758,7 +789,7 @@ mouse move 时减少计算次数：`debounce`
 input 中输入文字自动发送 ajax 请求进行自动补全： `debounce`  
 ajax 请求合并，不希望短时间内大量的请求被重复发送：`debounce`  
 resize window 重新计算样式或布局：`debounce` 或 `throttle`  
-scroll 时触发操作，如随动效果：throttle  
+scroll 时触发操作，如随动效果：`throttle`  
 对用户输入的验证，不想停止输入再进行验证，而是每 n 秒进行验证：`throttle`
 
 </p>
@@ -796,6 +827,25 @@ scroll 时触发操作，如随动效果：throttle
 
 ---
 
+#### js 原型链
+
+知识点：`原型链`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+函数都有 `prototype` 属性，对象没有 `prototype` 属性   
+一个函数通过 `new` 称为`实例`,这个函数称为 `构造函数`  
+`prototype` 原型对象
+
+![prototype](../_image/prototype.png)
+
+
+
+</p>
+</details>
+
+---
 #### 前端模块化：`CommonJS`,`AMD`,`CMD`,`ES6`
 
 <details><summary><b>答案</b></summary>

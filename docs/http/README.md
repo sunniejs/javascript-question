@@ -35,6 +35,15 @@ HTTP2 支持服务端推送
 </details>
 
 ---
+#### http 和 https 的区别 ？
+
+<details><summary><b>答案</b></summary>
+<p>
+ 
+ </p>
+</details>
+
+---
 
 #### CSRF（Cross-site request forgery）跨站请求伪造？
 
