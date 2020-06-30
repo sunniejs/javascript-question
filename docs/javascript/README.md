@@ -52,7 +52,7 @@ typeof console.log // 'function'
 -   `instanceof`通过原型链来判断数据类型的
 
 ```javascript
-p1 = new Person()
+var p1 = new Person()
 p1 instanceof Person // true
 ```
 
@@ -237,6 +237,22 @@ for...in 循环出的是 key，for...of 循环出的是 value
 <details><summary><b>答案</b></summary>
 <p>
 
+```javascript
+let array = [1, 2, 3, 4, 5]
+
+//ES5
+
+let find = array.filter(function(item) {
+    return item % 2 === 0 //返回满足条件的所有值
+})
+
+//ES6
+let find = array.find(function(item) {
+    return item % 2 === 0 //返回满足条件的第一个值
+})
+console.log(find) // 2
+```
+
 </p>
 </details>
 
@@ -286,7 +302,7 @@ fn(1, 2, 3)
 -   箭头函数不绑定 `auguments`，用 `rest` 参数...解决
 -   箭头函数会捕获其上下文的 `this` 值，作为自己的 `this` 值
 -   箭头函数当方法使用的时候，没有定义 this 绑定
--   使用`call()`和 `apply()`调用，传入参数时，参数一的改变对 `this` 没有影响
+-   使用`call()`和 `apply()`调用，传入参数时，参数的改变对 `this` 没有影响
 -   箭头函数没有原型属性
 -   箭头函数不能当做 `Generator` 函数，不能使用 `yiel` 关键字。
 
@@ -309,7 +325,7 @@ function Parent(name) {
 Parent.prototype.eat = function() {
     console.log('eat')
 }
-var child = new Child('parent')
+var child = new Parent('parent')
 ```
 
 ES6 引入了 `CLASS` 概念，`constructor`方法就是构造函数，定义 `类` 的方法时，前面不需要加 `function` 保留字，方法之前不需要逗号。
@@ -323,7 +339,7 @@ class Parent {
         console.log('eat')
     }
 }
-let child = new Child('parent')
+let child = new Parent('parent')
 ```
 
 </p>
@@ -385,7 +401,7 @@ function Child() {
 Child.prototype = new Parent()
 ```
 
-缺点：多执行了一次构造函数会 `Child3.prototype = new Parent()`
+缺点：多执行了一次构造函数会 `Child.prototype = new Parent()`
 
 ```javascript
 function Parent() {
@@ -398,29 +414,28 @@ function Child() {
 }
 Child.prototype = Parent.prototype
 ```
+
 通过上面的方法继承，尝试修改实例属性
 
 ```javascript
 var s1 = new Child()
 var s2 = new Child()
-console.log(s1.constructor)  
+console.log(s1.constructor)
 ```
-缺点：子类实例的构造函数是Parent，显然这是不对的，应该是Child
+
+缺点：子类实例的构造函数是 Parent，显然这是不对的，应该是 Child
 
 ```javascript
-
-function Parent(){
-    this.name='parent'
-    this.play=[1,2,3]
+function Parent() {
+    this.name = 'parent'
+    this.play = [1, 2, 3]
 }
-function Child(){
+function Child() {
     Parent.call(this)
-    this.type='child'
+    this.type = 'child'
 }
-Child.prototype=Object.create(Parent.prototype)
+Child.prototype = Object.create(Parent.prototype)
 ```
-
- 
 
 </p>
 </details>
@@ -485,6 +500,13 @@ Bar.classMethod() // 'hello'
 <details><summary><b>答案:star:</b></summary>
 <p>
 
+闭包是指有权访问另一个函数作用域内变量的函数。
+
+闭包有两个常用的用途。
+
+-   可以读取函数内部的变量
+-   让这些变量的值始终保持在内存中，不会在调用后被自动清除
+
 </p>
 </details>
 
@@ -536,17 +558,6 @@ console.log(arr) // [1, 5, 10, 25, 40, 1000]
 
 ---
 
-#### 如何用箭头函数时间一个数组排序？
-
-知识点：`Object`
-
-<details><summary><b>答案</b></summary>
-<p>
-
-</p>
-</details>
-
----
 #### js 请用`ES5` `ES6` 合并数组？
 
 知识点：`合并数组`
@@ -555,7 +566,6 @@ console.log(arr) // [1, 5, 10, 25, 40, 1000]
 <p>
 
 ```javascript
-
 let a = [1, 2, 3]
 let b = [4, 5, 6]
 
@@ -566,9 +576,9 @@ Array.prototype.push.apply(a, b)
 console.log(a) // [1,2,3,4,5,6]
 // ES6
 let c = [...a, ...b]
-console.log(c) 
-
+console.log(c)
 ```
+
 </p>
 </details>
 
@@ -646,6 +656,13 @@ console.log(obj) // {username: "sunnie"}
 <details><summary><b>答案</b></summary>
 <p>
 
+-   在浏览器里，在全局范围内 `this` 指向 `window` 对象；
+-   在函数中，this 永远指向最后调用他的那个对象；
+-   构造函数中，this 指向 new 出来的那个新的对象；
+-   call、apply、bind 中的 this 被强绑定在指定的那个对象上；
+-   箭头函数中 this 比较特殊,箭头函数 this 为父作用域的 this，不是调用时的 this.要知道前四种方式,都是调用时确定,也就是动态的,而箭头函数的 this 指向是静态的,声明的时候就确定了下来；
+    apply、call、bind 都是 js 给函数内置的一些 API，调用他们可以为函数指定 this 的执行,同时也可以传参。
+
 </p>
 </details>
 
@@ -664,7 +681,7 @@ console.log(obj) // {username: "sunnie"}
 
 ```javascript
 var person = {
-    value: 1
+    value: 1,
 }
 function say(name, age) {
     console.log(name)
@@ -701,14 +718,14 @@ Function.prototype.call2 = function(context) {
 
 // 测试一下
 var foo = {
-    value: 1
-};
-
-function bar() {
-    console.log(this.value);
+    value: 1,
 }
 
-bar.call2(foo); // 1
+function bar() {
+    console.log(this.value)
+}
+
+bar.call2(foo) // 1
 ```
 
 **apply 实现**
@@ -827,6 +844,32 @@ scroll 时触发操作，如随动效果：`throttle`
 
 ---
 
+#### JS 创建对象的方法
+
+知识点：`对象`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+```javascript
+// 第一种方式: 字面量
+var o1 = { name: 'o1' }
+var o2 = new Object({ name: 'o2' })
+// 第二种 构造函数
+var M = function(name) {
+    this.name = name
+}
+var o3 = new M('o3')
+// 第二种 Object.create
+var p = { name: 'o4' }
+var o4 = Object.create(p)
+```
+
+</p>
+</details>
+
+---
+
 #### js 原型链
 
 知识点：`原型链`
@@ -834,18 +877,34 @@ scroll 时触发操作，如随动效果：`throttle`
 <details><summary><b>答案</b></summary>
 <p>
 
-函数都有 `prototype` 属性，对象没有 `prototype` 属性   
-一个函数通过 `new` 称为`实例`,这个函数称为 `构造函数`  
-`prototype` 原型对象
+```javascript
+// 在声明一个函数，js 引擎会为该函数添加  prototype
+function M() {}
+// M 的原型对象 prototype constructor  指向 M 构造函数本身
+M.prototype.constructor === M // true
+// M 被 new 称为 实例,o 为实例
+var o = new M()
+//  实例 m 有个__proto__ 属性 指向 原型对象
+o.__proto__ === M.prototype
+```
+
+在声明一个函数，js 引擎会为该函数添加 `prototype` 属性，被称为`原型对象`,对象没有 `prototype` 属性
+
+`原型对象` 有个 `constructor` 指向 构造函数
+
+任何一个函数通过被 `new` 称为`实例`,这个函数称为 `构造函数`
+
+`实例` 有个 `__proto__` 属性 指向 `原型对象`
+
+如果`实例`上没有找到属性或方法，则会向它的`原型对象`上找，直到找到 `Object.prototype` 还没有就返回 没有定义
 
 ![prototype](../_image/prototype.png)
-
-
 
 </p>
 </details>
 
 ---
+
 #### 前端模块化：`CommonJS`,`AMD`,`CMD`,`ES6`
 
 <details><summary><b>答案</b></summary>
@@ -856,11 +915,50 @@ scroll 时触发操作，如随动效果：`throttle`
 
 ---
 
-#### JavaScript Event Loop
+#### JavaScript Event Loop 事件循环机制
 
 <details><summary><b>答案</b></summary>
 <p>
 
+JavaScript 是一门单线程的语言，他的异步是通过 Event Loop 事件循环机制来实现的。  
+大体有三个部分组成：
+
+-   调用栈(Call Stack)
+-   消息队列(Message Queue)也叫任务队列(Task Queue)、回调队列(Callback Queue)里面的任务称为:宏任务(Macrotask)
+-   微任务队列(Microtask Queue)。
+
+Event Loop 开始时，会从全局栈开始一行一行执行，遇到函数执行会压入调用栈中。当函数返回后，会从调用栈中弹出。
+
+如果有 `fetch` ,`事件回调`,`settimeout` ,`setInterval` ,则会将它的回调函数会入队到消息队列中，在调用栈清空的时候执行。
+
+使用 `promise` ,`async\await`创建的异步操作,会加入到微任务队列中,会在调用栈清空的时候立即执行,并且处理期间新加入的微任务也会一同执行。
+
+`promise.then` 的回调函数会入队到 微任务队列中。
+
+Microtask (微任务)
+
+-   process.nextTick
+-   promise
+-   MutationObserver
+
+Macrotask (宏任务)
+
+-   setTimeout
+-   setImmediate
+-   setInterval
+-   I/O
+-   UI 渲染
+
+</p>
+</details>
+
+---
+
+#### js 0.1+0.2 为什么不等于 0.3?
+
+<details><summary><b>答案</b></summary>
+<p>
+0.1和0.2在转换成二进制后会无限循环，由于标准位数的限制后面多余的位数会被截掉，此时就已经出现了精度的损失，相加后因浮点数小数位的限制而截断的二进制数字在转换为十进制就会变成0.30000000000000004。
 </p>
 </details>
 
