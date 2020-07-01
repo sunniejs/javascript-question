@@ -56,8 +56,20 @@ box-sizing : border-box&emsp;&emsp;&emsp;&emsp;IE 盒模型
 <details><summary><b>答案</b></summary>
 <p>
 
-BFC（块级格式化上下文），一个创建了新的 BFC 的盒子是独立布局的，盒子内元素的布局不会影响盒子外面的元素。在同一个 BFC 中的两个相邻的盒子在垂直方向发生 margin 重叠的问题
-BFC 是指浏览器中创建了一个独立的渲染区域，该区域内所有元素的布局不会影响到区域外元素的布局，这个渲染区域只对块级元素起作用
+BFC(块级格式上下文)可以理解为名词，我要创建一个 BFC，是页面盒模型布局中的一种 CSS 渲染模式，相当于一个独立的容器，里面的元素和外部的元素相互不影响。
+
+创建 BFC 的方式有：
+
+-   html 根元素
+-   float 浮动
+-   绝对定位
+-   overflow 不为 visiable
+-   display 为表格布局或者弹性布局
+
+BFC 主要的作用是：
+
+-   清除浮动
+-   防止同一 BFC 容器中的相邻元素间的外边距重叠问题
 
  </p>
 </details>
@@ -77,7 +89,7 @@ BFC 是指浏览器中创建了一个独立的渲染区域，该区域内所有�
     6.后代选择器（li a）  
     7.通配符选择器（ \* ）  
     8.属性选择器（a[rel = "external"]）  
-    9.伪类选择器（a: hover, li: nth - child）
+    9.伪类选择器（a: hover, li: nth-child ）
 -   可继承： font-size font-family color, UL LI DL DD DT;
 -   不可继承 ：border padding margin width height ;
 
@@ -126,7 +138,7 @@ p:nth-child(2) 选择属于其父元素的第二个子元素的每个 <p> 元素
 2.伪元素，这里我们使用 `::after`。添加一个类 `clearfix::after` (推荐，浏览器支持好)
 
 ```html
-<div class="p fix">
+<div class="p clearfix">
     <div class="c"></div>
     <div class="c"></div>
 </div>
@@ -245,6 +257,22 @@ p:nth-child(2) 选择属于其父元素的第二个子元素的每个 <p> 元素
 -   `link` 属于 html 标签，而 `@import` 是 CSS 中提供的
 -   在页面加载的时候，`link` 会同时被加载，而`@import` 引用的 CSS 会在页面加载完成后才会加载引用的 CSS
 -   `@import` 只有在 ie5 以上才可以被识别，而 `link` 是 html 标签，不存在浏览器兼容性问题
+
+</p>
+</details>
+
+---
+
+#### opacity: 0、visibility: hidden、display: none 优劣和适用场景 ？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+| 隐藏               | 元素能否点击 | 元素是否消失 | 性能               | 继承                                                       |
+| ------------------ | ------------ | ------------ | ------------------ | ---------------------------------------------------------- |
+| display:none       | 不能点击     | 消失         | 回流, 性能消耗较大 | 非继承属性                                                 |
+| visibility: hidden | 不能点击     | 不会消失     | 重绘, 性能消耗较少 | 继承属性 ，通过设置 visibility: visible;可以让子孙节点显式 |
+| opacity: 0         | 可以点击     | 不会消失     | 重绘，性能消耗较少 | 非继承属性                                                 |
 
 </p>
 </details>
