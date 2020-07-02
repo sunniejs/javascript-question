@@ -19,6 +19,43 @@
 <details><summary><b>答案</b></summary>
 <p>
 code splitting
+
+-   entry 项目入口
+-   output 出口文件
+-   module 模块的处理
+-   loader
+-   plugin
+
+ </p>
+</details>
+
+---
+
+#### webpack Tree-shaking？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+记住需要使用 ES6 模块和 UglifyJsPlugin 插件，以及配置 optimization 选项，设置 usedExports 和 sideEffects 为 true。
+
+```javascript
+// webpack.config.js
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    mode: 'none',
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin()],
+        usedExports: true,
+        sideEffects: true,
+    },
+    plugins: [new HtmlWebpackPlugin()],
+}
+```
+
  </p>
 </details>
 
@@ -52,6 +89,27 @@ code splitting
 
 提取公共代码
 
+splitChunks
+
+ </p>
+</details>
+
+---
+
+#### 小程序提升性能？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+-   使用防抖节流，onPageScroll，按钮
+-   骨架屏
+-   SetData 不渲染的数据不使用，合并 setData
+-   分包，分包预下载，独立分包
+-   使用 CDN 图片
+
+精简首屏数据
+我们推荐开发者延迟请求非关键渲染数据，与视图层渲染无关的数据尽量不要放在 data 中，加快页面渲染完成时间
+
  </p>
 </details>
 
@@ -61,13 +119,25 @@ code splitting
 
 <details><summary><b>答案</b></summary>
 <p>
- 
- &nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”
 
-![logo](https://imgs.solui.cn/wx/640.gif ':size=262x224')  
+&nbsp;&nbsp;&nbsp;&nbsp;扫描下方二维码:point_down::point_down:关注“前端女塾”
+
+![logo](https://imgs.solui.cn/wx/640.gif ':size=262x224')
 关注公众号：回复“加群”即可加 前端仙女群
 
 </p>
 </details>
 
 ---
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
